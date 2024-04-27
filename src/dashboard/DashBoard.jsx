@@ -106,8 +106,8 @@ function DashBoard() {
     },
   ];
 
-  const setContent = () => {
-    dispatch(setData(data));
+  const setContent = (chatgptContent) => {
+    dispatch(setData(chatgptContent));
   };
 
   const setDetails = () => {
@@ -176,6 +176,7 @@ function DashBoard() {
   const sendMessageToChild = (chatgptContent) => {
     // const iframe = document.getElementById("myIframe");
     const iframes = document.getElementsByTagName("iframe");
+    setContent(chatgptContent);
 
     for (let i = 0; i < iframes.length; i++) {
       const iframe = iframes[i];
