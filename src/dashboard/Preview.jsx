@@ -16,6 +16,7 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SyncIcon from "@mui/icons-material/Sync";
+import { log } from "grapejs/lib/core/grape_console";
 
 function Preview() {
   const dispatch = useDispatch();
@@ -77,6 +78,7 @@ function Preview() {
   };
 
   const fetchData = async () => {
+    console.log("function");
     settemLoader(true);
     const prompt = JSON.stringify({
       prompt: `Write a content for website with the structure sholud ${JSON.stringify(
@@ -110,7 +112,7 @@ function Preview() {
   };
 
   useLayoutEffect(() => {
-    settemLoader(true);
+    // settemLoader(true);
 
     fetchData(); // Call the async function
 
@@ -229,17 +231,16 @@ function Preview() {
         </Grid>
 
         <Grid item xs={`${Showmodel ? "12" : "9"}`}>
+          <button
+            className="absolute  p-4 top-1/2  bg-palatinate-blue-600 text-white rounded-full ml-[-20px] z-10"
+            onClick={() => setShowmodal((open) => !open)}
+          >
+            <NavigateNextIcon />
+          </button>
           <div
-            className="h-screen overflow-y-auto "
+            className="h-screen overflow-y-auto relative"
             style={{ scrollbarWidth: "none" }}
           >
-            <button
-              className="absolute  p-4 top-1/2 z-10 bg-palatinate-blue-600 text-white rounded-full ml-[-25px]"
-              onClick={() => setShowmodal((open) => !open)}
-            >
-              <NavigateNextIcon />
-            </button>
-
             <div className="w-full h-fit bg-palatinate-blue-50 border-red-100  p-2  gap-2 flex justify-center">
               {divData.map((website) => (
                 <span
@@ -255,10 +256,10 @@ function Preview() {
                 </span>
               ))}
             </div>
-            {temLoader && (
+            {/* {temLoader && (
               <button
                 type="button"
-                class="top-1/2 absolute right-1/2 flex"
+                className="top-1/2 absolute right-1/2 flex"
                 disabled
               >
                 <svg
@@ -286,13 +287,11 @@ function Preview() {
                   ></path>
                 </svg>
               </button>
-            )}
+            )} */}
             <iframe
               id="myIframe"
               title="Child iFrame"
-              className={` w-full h-[1600px] relative left-0 top-0 origin-top-left ${
-                temLoader ? "opacity-0 " : "opacity-100"
-              }`}
+              className={` w-full h-[1600px] relative left-0 top-0 origin-top-left `}
               src={iframeurl}
             />
           </div>
